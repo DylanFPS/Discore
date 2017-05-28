@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html>
-	<head>
+<!DOCTYPE html><html><head>
 		<title>BSI - Discore</title>
-		<link rel="icon" type="image/png" href="favicon.png" />
-		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/tether.min.css" />
-		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/site.css" />
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/zenburn.min.css" />
+		<link rel="icon" type="image/png" href="favicon.png">
+		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/tether.min.css">
+		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/site.css">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/zenburn.min.css">
 		<script src="https://use.fontawesome.com/21c1db06e1.js"></script>
 		<script src="https://bundledsticksinkorperated.github.io/js/jquery.min.js"></script>
 		<script src="https://bundledsticksinkorperated.github.io/js/tether.min.js"></script>
@@ -15,16 +13,18 @@
 		<script src="https://bundledsticksinkorperated.github.io/js/trianglify.colors.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
 		<script>hljs.initHighlightingOnLoad();</script>
+    <script defer="" src="main.dart.js"></script>
+    
 	</head>
 	<body>
 		<canvas id="background"></canvas>
 		<div class="container">
 			<div id="ctaJumbo" class="jumbotron glassish text-xs-center">
 				<h1 class="display-3">Discore</h1>
-				<a class="lead text-primary" href="https://github.com/BundledSticksInkorperated">Bundled Sticks</a>
-				<hr class="m-y-2" />
-				<p>An unofficial .NET Core library for the Discord API</p>
-				<p class="lead">
+					<a class="lead text-primary" href="https://github.com/BundledSticksInkorperated">Bundled Sticks</a>
+				<hr class="m-y-2">
+					<p>An unofficial .NET Core library for the Discord API</p>
+					<p class="lead">
 					<a class="btn btn-github bnt-lg" href="https://github.com/BundledSticksInkorperated/Discore"><i class="fa fa-code-fork"></i> Fork me!</a>
 					<a class="btn btn-github bnt-lg" href="https://github.com/BundledSticksInkorperated/Discore/wiki"><i class="fa fa-book"></i> Wiki</a>
 				</p>
@@ -32,70 +32,15 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card glassish">
-						<div class="card-block">
-							<h4 class="card-header text-xs-center">Example Bot: Ping Pong</h4>
+						<h2 id="release-title" class="card-header text-md-center">Loading...</h2>
+						<div id="release-body" class="card-block">
+							<img class="m-x-auto d-block img-circle" id="app-loading" src="loading.gif">
+							<span id="release-status"></span>
 						</div>
-						<pre style="margin-bottom: 0; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;">
-						<code class="cs">using Discore;
-using Discore.WebSocket;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace DiscorePingPong
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            Program program = new Program();
-            program.Run().Wait();
-        }
-		
-        public async Task Run()
-        {
-            // Create authenticator using a bot user token.
-            DiscordBotUserToken token = new DiscordBotUserToken("&lt;bot user token goes here&gt;");
-
-            // Create a WebSocket application.
-            DiscordWebSocketApplication app = new DiscordWebSocketApplication(token);
-
-            // Create and start a single shard.
-            Shard shard = app.ShardManager.CreateSingleShard();
-            await shard.StartAsync(CancellationToken.None);
-
-            // Subscribe to the message creation event.
-            shard.Gateway.OnMessageCreated += Gateway_OnMessageCreated;
-
-            // Wait for the shard to end before closing the program.
-            while (shard.IsRunning)
-                await Task.Delay(1000);
-        }
-
-        private static async void Gateway_OnMessageCreated(object sender, MessageEventArgs e)
-        {
-            Shard shard = e.Shard;
-            DiscordMessage message = e.Message;
-
-            if (message.Author == shard.User)
-                // Ignore messages created by our bot.
-                return;
-
-            if (message.Content == "!ping")
-            {
-                // Grab the DM or guild text channel this message was posted in from cache.
-                ITextChannel textChannel = (ITextChannel)shard.Cache.Channels.Get(message.ChannelId);
-
-                try
-                {
-                    // Reply to the user who posted "!ping".
-                    await textChannel.CreateMessage($"<@{message.Author.Id}> Pong!");
-                }
-                catch (Exception) {  /* Message failed to send... :( */ }
-            }
-        }
-    }
-}</code></pre>
+						<div class="card-block">
+							<small class="text-muted"><span id="release-footer"></span></small>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -132,5 +77,5 @@ namespace DiscorePingPong
 
 				GenBackground();
 		</script>
-	</body>
-</html>
+	
+</body></html>
