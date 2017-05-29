@@ -1,4 +1,5 @@
 <!DOCTYPE html><html><head>
+		<meta charset="UTF-8">
 		<title>BSI - Discore</title>
 		<link rel="icon" type="image/png" href="favicon.png">
 		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/bootstrap.min.css">
@@ -10,7 +11,7 @@
 		<script src="https://bundledsticksinkorperated.github.io/js/tether.min.js"></script>
 		<script src="https://bundledsticksinkorperated.github.io/js/bootstrap.min.js"></script>
 		<script src="https://bundledsticksinkorperated.github.io/js/trianglify.min.js"></script>
-		<script src="https://bundledsticksinkorperated.github.io/js/trianglify.colors.js"></script>
+		<script src="js/trianglify.colors.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
 		<script>hljs.initHighlightingOnLoad();</script>
     <script defer="" src="main.dart.js"></script>
@@ -23,7 +24,7 @@
 				<h1 class="display-3">Discore</h1>
 					<a class="lead text-primary" href="https://github.com/BundledSticksInkorperated">Bundled Sticks</a>
 				<hr class="m-y-2">
-					<p>An unofficial .NET Core library for the Discord API</p>
+					<p>An unofficial .NET Standard interface for the Discord API</p>
 					<p class="lead">
 					<a class="btn btn-github bnt-lg" href="https://github.com/BundledSticksInkorperated/Discore"><i class="fa fa-code-fork"></i> Fork me!</a>
 					<a class="btn btn-github bnt-lg" href="https://github.com/BundledSticksInkorperated/Discore/wiki"><i class="fa fa-book"></i> Wiki</a>
@@ -34,7 +35,7 @@
 					<div class="card glassish">
 						<h2 id="release-title" class="card-header text-md-center">Loading...</h2>
 						<div id="release-body" class="card-block">
-							<img class="m-x-auto d-block img-circle" id="app-loading" src="loading.gif">
+							<img class="m-x-auto d-block img-circle app-loading" src="loading.gif">
 							<span id="release-status"></span>
 						</div>
 						<div class="card-block">
@@ -62,7 +63,7 @@
 						width: window.innerWidth,
 						height: window.innerHeight,
 						x_colors: TrianglifyColors.PrincessToQueen,
-						//y_colors: TrianglifyColors.CrashingOceanWaves,
+						//y_colors: TrianglifyColors.PrincessToQueen,
 						cell_size: 120,
 						variance: "1"
 					});
@@ -76,6 +77,50 @@
 				});
 
 				GenBackground();
+
+				var TagColor = function() {
+					var h2Tags = document.getElementById('release-body').getElementsByTagName('h2');
+					len = h2Tags.length;
+					for (index = 0; index < len; ++index)
+					{
+						tag = h2Tags[index];
+
+						var tagPattern = Trianglify({
+							width: tag.offsetWidth,
+							height: tag.offsetHeight,
+							//color_function: TrianglifyColors.PinkElephant,
+							x_colors: TrianglifyColors.PrincessToQueen,
+							y_colors: TrianglifyColors.PinkElephant,
+							cell_size: 60,
+							variance: "0.2"
+						});
+						tag.setAttribute('style', 'background: url('+ tagPattern.png() +')');
+					}
+				};
 		</script>
+		<style>
+			#release-body h2 {
+				margin-top: 20px;
+				padding: 5px;
+				color: white;
+				text-align: center;
+				text-shadow:
+					-1px -1px 0 #000,
+					1px -1px 0 #000,
+					-1px 1px 0 #000,
+					1px 1px 0 #000;
+			}
+			#release-body h3::before {
+				content: "-- ";
+			}
+
+			#release-body h3::after {
+				content: " --";
+			}
+			#release-body h3 {
+				padding: 5px;
+				text-align: center;
+			}
+		</style>
 	
 </body></html>
