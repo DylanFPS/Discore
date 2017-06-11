@@ -1,126 +1,101 @@
 <!DOCTYPE html><html><head>
-		<meta charset="UTF-8">
-		<title>BSI - Discore</title>
-		<link rel="icon" type="image/png" href="favicon.png">
+    <title>cp_test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" href="favicon.png">
 		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/tether.min.css">
 		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/site.css">
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/zenburn.min.css">
+		<link rel="stylesheet" type="text/css" href="/styles.css">
+
 		<script src="https://use.fontawesome.com/21c1db06e1.js"></script>
-		<script src="https://bundledsticksinkorperated.github.io/js/jquery.min.js"></script>
+    <script src="https://bundledsticksinkorperated.github.io/js/jquery.min.js"></script>
 		<script src="https://bundledsticksinkorperated.github.io/js/tether.min.js"></script>
 		<script src="https://bundledsticksinkorperated.github.io/js/bootstrap.min.js"></script>
 		<script src="https://bundledsticksinkorperated.github.io/js/trianglify.min.js"></script>
-		<script src="js/trianglify.colors.js"></script>
+
+    <script src="js/trianglify.colors.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
-		<script>hljs.initHighlightingOnLoad();</script>
+
     <script defer="" src="main.dart.js"></script>
     
-	</head>
-	<body>
-		<canvas id="background"></canvas>
-		<div class="container">
-			<div id="ctaJumbo" class="jumbotron glassish text-xs-center">
-				<h1 class="display-3">Discore</h1>
-					<a class="lead text-primary" href="https://github.com/BundledSticksInkorperated">Bundled Sticks</a>
-				<hr class="m-y-2">
-					<p>An unofficial .NET Standard interface for the Discord API</p>
-					<p class="lead">
-					<a class="btn btn-github bnt-lg" href="https://github.com/BundledSticksInkorperated/Discore"><i class="fa fa-code-fork"></i> Fork me!</a>
-					<a class="btn btn-github bnt-lg" href="https://github.com/BundledSticksInkorperated/Discore/wiki"><i class="fa fa-book"></i> Wiki</a>
-				</p>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="card glassish">
-						<h2 id="release-title" class="card-header text-md-center">Loading...</h2>
-						<div id="release-body" class="card-block">
-							<img class="m-x-auto d-block img-circle app-loading" src="loading.gif">
-							<span id="release-status"></span>
-						</div>
-						<div class="card-block">
-							<small class="text-muted"><span id="release-footer"></span></small>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<script>
-				var GenBackground = function() {
+  </head>
+  <body>
+    <canvas id="background"></canvas>
+		<app><img class="m-x-auto d-block img-circle app-loading" src="loading.gif"></app>
 
-					var atcJumbo = document.getElementById('ctaJumbo');
+	<script>
+		var reGenElements = [];
 
-					var atcJumboPattern = Trianglify({
-						width: atcJumbo.offsetWidth,
-						height: atcJumbo.offsetHeight,
-						color_function: TrianglifyColors.prototype.RainbowColorFunction,
-						cell_size: 60,
-						variance: "0.2"
-					});
-					atcJumbo.setAttribute('style', 'background: url(' + atcJumboPattern.png() + ')');
+		var genTriangle = function(element) {
 
-					var pattern = Trianglify({
-						width: window.innerWidth,
-						height: window.innerHeight,
-						x_colors: TrianglifyColors.PrincessToQueen,
-						//y_colors: TrianglifyColors.PrincessToQueen,
-						cell_size: 120,
-						variance: "1"
-					});
-					pattern.canvas(document.getElementById('background'));
+				if (element.offsetHeight === 0 && element.offsetWidth === 0) {
+					console.log(element);
+					console.log('element errored, no new triangle');
+					return;
 				}
 
-				var doit;
-				window.addEventListener('resize', function(){
-					clearTimeout(doit);
-					doit = setTimeout(function() { GenBackground(); }, 100);
+				var pattern = Trianglify({
+				width: element.offsetWidth,
+				height: element.offsetHeight,
+				color_function: TrianglifyColors.prototype.RainbowColorFunction,
+				cell_size: 60,
+				variance: "0.2"
+			});
+
+			element.setAttribute('style', 'background: url(' + pattern.png() + ')');
+		}
+
+		var genBackground = function() {
+			Trianglify({
+				width: window.innerWidth,
+				height: window.innerHeight,
+				x_colors: TrianglifyColors.PrincessToQueen,
+				cell_size: 120,
+				variance: "1"
+			}).canvas(document.getElementById('background'));
+		}
+		genBackground();
+
+		var doit;
+		window.addEventListener('resize', function(){
+			clearTimeout(doit);
+			doit = setTimeout(function() {
+				genBackground();
+				console.log('regenning triangles for ' +reGenElements.length+' elements');
+				reGenElements.forEach(function(element, index) {
+					genTriangle(element);
 				});
+			}, 100);
+		});
 
-				GenBackground();
+		document.addEventListener("dartLoadHL", function(event) {
+			console.log('Dart told me to load highlight.js');
+			$('code.language-csharp').each(function (i, block) {
+				hljs.highlightBlock(block);
+			});
+		});
 
-				var TagColor = function() {
-					var h2Tags = document.getElementById('release-body').getElementsByTagName('h2');
-					len = h2Tags.length;
-					for (index = 0; index < len; ++index)
-					{
-						tag = h2Tags[index];
+		document.addEventListener("dartTrianglify", function(event) {
+			console.log('Dart told me to create a triangle');
 
-						var tagPattern = Trianglify({
-							width: tag.offsetWidth,
-							height: tag.offsetHeight,
-							//color_function: TrianglifyColors.PinkElephant,
-							x_colors: TrianglifyColors.PrincessToQueen,
-							y_colors: TrianglifyColors.PinkElephant,
-							cell_size: 60,
-							variance: "0.2"
-						});
-						tag.setAttribute('style', 'background: url('+ tagPattern.png() +')');
-					}
-				};
+			var element = document.getElementById(JSON.parse(event.detail).elementID);
+			console.log(element);
+
+
+			var pattern = Trianglify({
+				width: element.offsetWidth,
+				height: element.offsetHeight,
+				color_function: TrianglifyColors.prototype.RainbowColorFunction,
+				cell_size: 60,
+				variance: "0.2"
+			});
+			element.setAttribute('style', 'background: url(' + pattern.png() + ')');
+			reGenElements.push(element);
+		});
 		</script>
-		<style>
-			#release-body h2 {
-				margin-top: 20px;
-				padding: 5px;
-				color: white;
-				text-align: center;
-				text-shadow:
-					-1px -1px 0 #000,
-					1px -1px 0 #000,
-					-1px 1px 0 #000,
-					1px 1px 0 #000;
-			}
-			#release-body h3::before {
-				content: "-- ";
-			}
+  
 
-			#release-body h3::after {
-				content: " --";
-			}
-			#release-body h3 {
-				padding: 5px;
-				text-align: center;
-			}
-		</style>
-	
 </body></html>

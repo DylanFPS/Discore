@@ -1,0 +1,129 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "package:angular2/angular2.dart",
+        "5": false
+      },
+      {
+        "1": "package:angular2/security.dart",
+        "5": false
+      },
+      {
+        "1": "dart:html",
+        "5": false
+      },
+      {
+        "1": "dart:convert",
+        "5": false
+      },
+      {
+        "1": "dart:async",
+        "5": false
+      },
+      {
+        "1": "json_payload.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "CallToActionComponent",
+        "5": [
+          {
+            "1": "DomSanitizationService",
+            "4": "_dss"
+          }
+        ],
+        "6": [
+          "OnInit"
+        ],
+        "7": [
+          {
+            "2": "COMMON_DIRECTIVES"
+          },
+          {
+            "2": "SafeInnerHtmlDirective"
+          }
+        ]
+      }
+    ],
+    "6": "call_to_action_component.dart",
+    "7": [
+      {
+        "1": "package:angular2/angular2.template.dart",
+        "4": "i0"
+      },
+      {
+        "1": "package:angular2/security.template.dart",
+        "4": "i1"
+      },
+      {
+        "1": "json_payload.template.dart",
+        "4": "i2"
+      }
+    ]
+  },
+  "type": {
+    "CallToActionComponent": {
+      "class": "Directive",
+      "isComponent": true,
+      "selector": "cta",
+      "exportAs": null,
+      "type": {
+        "class": "Type",
+        "name": "CallToActionComponent",
+        "moduleUrl": "asset:cp_test/lib/call_to_action_component/call_to_action_component.dart",
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": [
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "DomSanitizationService",
+                "moduleUrl": "asset:angular2/lib/src/security/dom_sanitization_service.dart",
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          }
+        ]
+      },
+      "changeDetection": 6,
+      "inputs": {},
+      "inputTypes": {},
+      "outputs": {},
+      "hostListeners": {},
+      "hostProperties": {},
+      "hostAttributes": {},
+      "lifecycleHooks": [
+        0
+      ],
+      "template": {
+        "encapsulation": 2,
+        "template": "<div class=\"container\">\r\n    <div id=\"ctaJumbo\" class=\"jumbotron glassish text-xs-center\">\r\n        <h1 class=\"display-3\">Discore</h1>\r\n            <span class=\"text-muted\">by</span>\r\n            <a class=\"lead text-primary\" href=\"https://github.com/BundledSticksInkorperated\">Bundled Sticks</a>\r\n        <hr class=\"m-y-2\">\r\n            <p>An unofficial .NET Standard interface for the Discord API</p>\r\n        <div class=\"btn-group\" role=\"group\">\r\n            <a target=\"_blank\" class=\"btn btn-github bnt-lg\" href=\"https://github.com/BundledSticksInkorperated/Discore\"><i class=\"fa fa-code-fork\"></i> Fork me!</a>\r\n            <a target=\"_blank\" class=\"btn btn-github bnt-lg\" href=\"https://github.com/BundledSticksInkorperated/Discore/wiki\"><i class=\"fa fa-book\"></i> Wiki</a>\r\n                <div class=\"btn-group\" role=\"group\">\r\n                    <button id=\"downloadGroupDropdown\" type=\"button\" class=\"btn btn-github dropdown-toggle\" data-toggle=\"dropdown\">\r\n                        <i class=\"fa fa-download\"></i> Download\r\n                    </button>\r\n                    <div class=\"dropdown-menu\">\r\n                        <div *ngIf=\"jsonPayload != null\">\r\n                            <a class=\"dropdown-item\" href=\"{{getZipball()}}\">Source Zip</a>\r\n                            <a target=\"_blank\" class=\"dropdown-item\" href=\"https://www.nuget.org/packages/Discore/{{getVersion()}}\">NuGet</a>\r\n                        </div>\r\n                    </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>",
+        "templateUrl": "asset:cp_test/lib/call_to_action_component/cta.html",
+        "styles": [],
+        "styleUrls": [],
+        "ngContentSelectors": []
+      },
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
+    }
+  },
+  "alias": {}
+}

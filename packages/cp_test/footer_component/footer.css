@@ -1,0 +1,20 @@
+div.footer /deep/ {
+    text-align: center;
+    font-size: 20px;
+    line-height: 50px;
+}
+
+img.img-footer /deep/ {
+    width: none;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.footer /deep/ {
+    position: absolute;
+    left: -2px;
+    right: -2px;
+    z-index: 0;
+    bottom: -5px;
+    height: 156px;
+}

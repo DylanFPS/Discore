@@ -1,0 +1,115 @@
+{
+  "ngDeps": {
+    "1": "",
+    "3": [
+      {
+        "1": "package:angular2/angular2.dart",
+        "5": false
+      },
+      {
+        "1": "call_to_action_component/call_to_action_component.dart",
+        "5": false
+      },
+      {
+        "1": "release_component/release_component.dart",
+        "5": false
+      },
+      {
+        "1": "wiki_component/wiki_component.dart",
+        "5": false
+      },
+      {
+        "1": "footer_component/footer_component.dart",
+        "5": false
+      }
+    ],
+    "5": [
+      {
+        "1": "AppComponent",
+        "6": [
+          "OnInit"
+        ],
+        "7": [
+          {
+            "2": "COMMON_DIRECTIVES"
+          },
+          {
+            "2": "CallToActionComponent"
+          },
+          {
+            "2": "ReleaseComponent"
+          },
+          {
+            "2": "WikiComponent"
+          },
+          {
+            "2": "FooterComponent"
+          }
+        ]
+      }
+    ],
+    "6": "app_component.dart",
+    "7": [
+      {
+        "1": "package:angular2/angular2.template.dart",
+        "4": "i0"
+      },
+      {
+        "1": "call_to_action_component/call_to_action_component.template.dart",
+        "4": "i1"
+      },
+      {
+        "1": "release_component/release_component.template.dart",
+        "4": "i2"
+      },
+      {
+        "1": "wiki_component/wiki_component.template.dart",
+        "4": "i3"
+      },
+      {
+        "1": "footer_component/footer_component.template.dart",
+        "4": "i4"
+      }
+    ]
+  },
+  "type": {
+    "AppComponent": {
+      "class": "Directive",
+      "isComponent": true,
+      "selector": "app",
+      "exportAs": null,
+      "type": {
+        "class": "Type",
+        "name": "AppComponent",
+        "moduleUrl": "asset:cp_test/lib/app_component.dart",
+        "prefix": null,
+        "isHost": false,
+        "value": null,
+        "diDeps": []
+      },
+      "changeDetection": 6,
+      "inputs": {},
+      "inputTypes": {},
+      "outputs": {},
+      "hostListeners": {},
+      "hostProperties": {},
+      "hostAttributes": {},
+      "lifecycleHooks": [
+        0
+      ],
+      "template": {
+        "encapsulation": 2,
+        "template": "<cta></cta>\r\n<!-- <wiki></wiki> #TODO-->\r\n<readme></readme>\r\n<app-footer></app-footer>",
+        "templateUrl": "asset:cp_test/lib/app_component.html",
+        "styles": [],
+        "styleUrls": [],
+        "ngContentSelectors": []
+      },
+      "providers": [],
+      "viewProviders": [],
+      "queries": [],
+      "viewQueries": []
+    }
+  },
+  "alias": {}
+}

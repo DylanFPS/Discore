@@ -1,0 +1,17 @@
+<div *ngIf="currentPage != null">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="card glassish">
+                <div id="wiki-body" class="card-block" [safeInnerHtml]="currentPage.body"></div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card glassish">
+                    <div class="card-block" [safeInnerHtml]="getSidebar()"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{loadHL()}}

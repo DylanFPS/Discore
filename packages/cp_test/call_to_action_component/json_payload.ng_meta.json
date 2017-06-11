@@ -1,0 +1,13 @@
+{
+  "ngDeps": null,
+  "type": {
+    "JsonPayload": {
+      "class": "Identifier",
+      "name": "JsonPayload",
+      "moduleUrl": "asset:cp_test/lib/call_to_action_component/json_payload.dart",
+      "prefix": null,
+      "value": null
+    }
+  },
+  "alias": {}
+}
