@@ -1,0 +1,24 @@
+<div class="container">
+    <div id="ctaJumbo" class="jumbotron glassish text-xs-center">
+        <h1 class="display-3">Discore</h1>
+            <span class="text-muted">by</span>
+            <a class="lead text-primary" href="https://github.com/BundledSticksInkorperated">Bundled Sticks</a>
+        <hr class="m-y-2">
+            <p>An unofficial .NET Standard interface for the Discord API</p>
+        <div class="btn-group" role="group">
+            <a target="_blank" class="btn btn-github bnt-lg" href="https://github.com/BundledSticksInkorperated/Discore"><i class="fa fa-code-fork"></i> Fork me!</a>
+            <a target="_blank" class="btn btn-github bnt-lg" href="https://github.com/BundledSticksInkorperated/Discore/wiki"><i class="fa fa-book"></i> Wiki</a>
+                <div class="btn-group" role="group">
+                    <button id="downloadGroupDropdown" type="button" class="btn btn-github dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-download"></i> Download
+                    </button>
+                    <div class="dropdown-menu">
+                        <div *ngIf="jsonPayload != null">
+                            <a class="dropdown-item" href="{{getZipball()}}">Source Zip</a>
+                            <a target="_blank" class="dropdown-item" href="https://www.nuget.org/packages/Discore/{{getVersion()}}">NuGet</a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
