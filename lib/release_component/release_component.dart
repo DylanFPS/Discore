@@ -1,6 +1,5 @@
 import 'package:angular2/angular2.dart';
 import 'package:angular2/security.dart';
-import 'dart:js';
 import 'dart:html';
 import 'dart:async';
 import 'dart:convert';

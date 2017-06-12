@@ -1,9 +1,13 @@
 import 'package:angular2/angular2.dart';
 import 'package:angular2/security.dart';
+import 'package:angular2/router.dart';
+
 import 'wiki_page.dart';
 import 'wiki_service.dart';
+
 import 'dart:convert';
-import 'dart:html';
+import 'dart:html'
+  show CustomEvent, document;
 
 @Component(
   selector: 'wiki',
@@ -18,20 +22,22 @@ class WikiComponent implements OnInit {
   Map<String, WikiPage> rawPages;
   List<WikiPage> rawPagesList = new List();
 
-  WikiComponent(this._service, DomSanitizationService dss) {
+  final RouteParams _routeParams;
+
+  WikiComponent(this._service, DomSanitizationService dss, this._routeParams) {
     WikiPage.setSanitizationService(dss);
   }
 
   void ngOnInit() {
     _service.getPages()
-      .then(_setupPages);
-  }
+      .then((pages) {
+          rawPages = new Map<String, WikiPage>()
+            ..addAll(pages);
 
-  void _setupPages(Map<String, WikiPage> pages) {
-        rawPages = new Map<String, WikiPage>()
-          ..addAll(pages);
-
-      changePage("Home.md");
+          String page = _routeParams.get('page');
+          if (page != '' && rawPages.containsKey(page)) { changePage(page); }
+          else { changePage("Home"); }
+      });
   }
 
   void changePage(String page) {
@@ -51,11 +57,7 @@ class WikiComponent implements OnInit {
       new CustomEvent('dartTrianglify', detail: JSON.encode(payload)));
   }
 
-  SafeHtml getFooter() {
-    return rawPages['_Footer.md'].body;
-  }
-
   SafeHtml getSidebar() {
-    return rawPages['_Sidebar.md'].body;
+    return rawPages['_Sidebar'].body;
   }
 }

@@ -1,14 +1,25 @@
 import 'package:angular2/angular2.dart';
+import 'package:angular2/router.dart';
 
-import 'call_to_action_component/call_to_action_component.dart';
-import 'release_component/release_component.dart';
+
+import "package:angular2/platform/common.dart"
+    show LocationStrategy, HashLocationStrategy;
+
 import 'wiki_component/wiki_component.dart';
 import 'footer_component/footer_component.dart';
+import 'index_component.dart';
 
 @Component(
   selector: 'app',
   templateUrl: 'app_component.html',
-  directives: const [COMMON_DIRECTIVES, CallToActionComponent, ReleaseComponent, WikiComponent, FooterComponent])
-class AppComponent implements OnInit {
-  void ngOnInit() {  }
-}
+  directives: const [ROUTER_DIRECTIVES, FooterComponent],
+  providers: const[
+    ROUTER_PROVIDERS,
+    const Provider(LocationStrategy, useClass: HashLocationStrategy )
+  ])
+@RouteConfig(const [
+  const Route(path: '/', name: 'Index', component: IndexComponent, useAsDefault: true),
+  const Route(path: '/wiki', name: 'Wiki', component: WikiComponent),
+  const Route(path: '/wiki/:page', name: 'WikiPage', component: WikiComponent)
+])
+class AppComponent {}

@@ -1,102 +1,103 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Discore</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<head>
+		<title>Discore</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" type="image/png" href="favicon.png" />
-		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/tether.min.css" >
-		<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/site.css">
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/zenburn.min.css">
-		<link rel="stylesheet" type="text/css" href="/styles.css">
+		<link rel="icon" type="image/png" href="favicon.png" />
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
 
-		<script src="https://use.fontawesome.com/21c1db06e1.js"></script>
-    <script src="https://bundledsticksinkorperated.github.io/js/jquery.min.js"></script>
-		<script src="https://bundledsticksinkorperated.github.io/js/tether.min.js"></script>
-		<script src="https://bundledsticksinkorperated.github.io/js/bootstrap.min.js"></script>
-		<script src="https://bundledsticksinkorperated.github.io/js/trianglify.min.js"></script>
+			<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/tether.min.css" >
+			<link rel="stylesheet" type="text/css" href="https://bundledsticksinkorperated.github.io/css/site.css">
+			<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/zenburn.min.css">
+			<link rel="stylesheet" type="text/css" href="/styles.css">
 
-    <script src="js/trianglify.colors.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+			<script src="https://use.fontawesome.com/21c1db06e1.js"></script>
+			<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+			<script src="https://bundledsticksinkorperated.github.io/js/trianglify.min.js"></script>
 
-    <script defer src="main.dart" type="application/dart"></script>
-    <script defer src="packages/browser/dart.js"></script>
-  </head>
-  <body>
-    <canvas id="background"></canvas>
-		<app><img class="m-x-auto d-block img-circle app-loading" src="loading.gif"></app>
+		<script src="js/trianglify.colors.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
 
-	<script>
-		var reGenElements = [];
+		<script defer src="main.dart" type="application/dart"></script>
+		<script defer src="packages/browser/dart.js"></script>
+	</head>
+	<body>
+		<canvas id="background"></canvas>
+			<app><img class="m-x-auto d-block img-circle app-loading" src="loading.gif"></app>
 
-		var genTriangle = function(element) {
+		<script>
+			var reGenElements = [];
 
-				if (element.offsetHeight === 0 && element.offsetWidth === 0) {
-					console.log(element);
-					console.log('element errored, no new triangle');
-					return;
-				}
+			var genTriangle = function(element) {
+
+					if (element.offsetHeight === 0 && element.offsetWidth === 0) {
+						console.log(element);
+						console.log('element errored, no new triangle');
+						return;
+					}
+
+					var pattern = Trianglify({
+					width: element.offsetWidth,
+					height: element.offsetHeight,
+					color_function: TrianglifyColors.prototype.RainbowColorFunction,
+					cell_size: 60,
+					variance: "0.2"
+				});
+
+				element.setAttribute('style', 'background: url(' + pattern.png() + ')');
+			}
+
+			var genBackground = function() {
+				Trianglify({
+					width: window.innerWidth,
+					height: window.innerHeight,
+					x_colors: TrianglifyColors.PrincessToQueen,
+					cell_size: 120,
+					variance: "1"
+				}).canvas(document.getElementById('background'));
+			}
+			genBackground();
+
+			var doit;
+			window.addEventListener('resize', function(){
+				clearTimeout(doit);
+				doit = setTimeout(function() {
+					genBackground();
+					console.log('regenning triangles for ' +reGenElements.length+' elements');
+					reGenElements.forEach(function(element, index) {
+						genTriangle(element);
+					});
+				}, 100);
+			});
+
+			document.addEventListener("dartLoadHL", function(event) {
+				console.log('Dart told me to load highlight.js');
+				$('code.language-csharp').each(function (i, block) {
+					hljs.highlightBlock(block);
+				});
+			});
+
+			document.addEventListener("dartTrianglify", function(event) {
+				console.log('Dart told me to create a triangle');
+
+				var element = document.getElementById(JSON.parse(event.detail).elementID);
+				console.log(element);
+
 
 				var pattern = Trianglify({
-				width: element.offsetWidth,
-				height: element.offsetHeight,
-				color_function: TrianglifyColors.prototype.RainbowColorFunction,
-				cell_size: 60,
-				variance: "0.2"
-			});
-
-			element.setAttribute('style', 'background: url(' + pattern.png() + ')');
-		}
-
-		var genBackground = function() {
-			Trianglify({
-				width: window.innerWidth,
-				height: window.innerHeight,
-				x_colors: TrianglifyColors.PrincessToQueen,
-				cell_size: 120,
-				variance: "1"
-			}).canvas(document.getElementById('background'));
-		}
-		genBackground();
-
-		var doit;
-		window.addEventListener('resize', function(){
-			clearTimeout(doit);
-			doit = setTimeout(function() {
-				genBackground();
-				console.log('regenning triangles for ' +reGenElements.length+' elements');
-				reGenElements.forEach(function(element, index) {
-					genTriangle(element);
+					width: element.offsetWidth,
+					height: element.offsetHeight,
+					color_function: TrianglifyColors.prototype.RainbowColorFunction,
+					cell_size: 60,
+					variance: "0.2"
 				});
-			}, 100);
-		});
-
-		document.addEventListener("dartLoadHL", function(event) {
-			console.log('Dart told me to load highlight.js');
-			$('code.language-csharp').each(function (i, block) {
-				hljs.highlightBlock(block);
+				element.setAttribute('style', 'background: url(' + pattern.png() + ')');
+				reGenElements.push(element);
 			});
-		});
-
-		document.addEventListener("dartTrianglify", function(event) {
-			console.log('Dart told me to create a triangle');
-
-			var element = document.getElementById(JSON.parse(event.detail).elementID);
-			console.log(element);
-
-
-			var pattern = Trianglify({
-				width: element.offsetWidth,
-				height: element.offsetHeight,
-				color_function: TrianglifyColors.prototype.RainbowColorFunction,
-				cell_size: 60,
-				variance: "0.2"
-			});
-			element.setAttribute('style', 'background: url(' + pattern.png() + ')');
-			reGenElements.push(element);
-		});
-		</script>
-  </body>
+			</script>
+	</body>
 </html>
