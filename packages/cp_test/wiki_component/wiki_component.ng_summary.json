@@ -11,6 +11,10 @@
         "5": false
       },
       {
+        "1": "package:angular2/router.dart",
+        "5": false
+      },
+      {
         "1": "wiki_page.dart",
         "5": false
       },
@@ -24,6 +28,10 @@
       },
       {
         "1": "dart:html",
+        "2": [
+          "CustomEvent",
+          "document"
+        ],
         "5": false
       }
     ],
@@ -38,6 +46,10 @@
           {
             "1": "DomSanitizationService",
             "4": "dss"
+          },
+          {
+            "1": "RouteParams",
+            "4": "_routeParams"
           }
         ],
         "6": [
@@ -95,6 +107,26 @@
               "identifier": {
                 "class": "Identifier",
                 "name": "DomSanitizationService",
+                "moduleUrl": null,
+                "prefix": null,
+                "value": null
+              },
+              "identifierIsInstance": false
+            },
+            "value": null,
+            "isAttribute": false,
+            "isSelf": false,
+            "isHost": false,
+            "isSkipSelf": false,
+            "isOptional": false,
+            "isValue": false
+          },
+          {
+            "token": {
+              "value": null,
+              "identifier": {
+                "class": "Identifier",
+                "name": "RouteParams",
                 "moduleUrl": null,
                 "prefix": null,
                 "value": null

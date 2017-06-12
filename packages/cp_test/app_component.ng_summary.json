@@ -7,11 +7,15 @@
         "5": false
       },
       {
-        "1": "call_to_action_component/call_to_action_component.dart",
+        "1": "package:angular2/router.dart",
         "5": false
       },
       {
-        "1": "release_component/release_component.dart",
+        "1": "package:angular2/platform/common.dart",
+        "2": [
+          "LocationStrategy",
+          "HashLocationStrategy"
+        ],
         "5": false
       },
       {
@@ -21,26 +25,27 @@
       {
         "1": "footer_component/footer_component.dart",
         "5": false
+      },
+      {
+        "1": "index_component.dart",
+        "5": false
       }
     ],
     "5": [
       {
         "1": "AppComponent",
-        "6": [
-          "OnInit"
+        "4": [
+          {
+            "1": "RouteConfig",
+            "2": [
+              "const [const Route(path: '/', name: 'Index', component: IndexComponent, useAsDefault: true), const Route(path: '/wiki', name: 'Wiki', component: WikiComponent), const Route(path: '/wiki/:page', name: 'WikiPage', component: WikiComponent)]"
+            ],
+            "4": false
+          }
         ],
         "7": [
           {
-            "2": "COMMON_DIRECTIVES"
-          },
-          {
-            "2": "CallToActionComponent"
-          },
-          {
-            "2": "ReleaseComponent"
-          },
-          {
-            "2": "WikiComponent"
+            "2": "ROUTER_DIRECTIVES"
           },
           {
             "2": "FooterComponent"
@@ -72,18 +77,52 @@
       "hostListeners": {},
       "hostProperties": {},
       "hostAttributes": {},
-      "lifecycleHooks": [
-        0
-      ],
+      "lifecycleHooks": [],
       "template": {
         "encapsulation": 2,
-        "template": "<cta></cta>\r\n<!-- <wiki></wiki> #TODO-->\r\n<readme></readme>\r\n<app-footer></app-footer>",
+        "template": "<div class=\"p-bottom\">\r\n    <nav class=\"navbar navbar-toggleable-md navbar-inverse bg-inverse\">\r\n        <button class=\"navbar-toggler navbar-toggler-right\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarMain\">\r\n            <span class=\"navbar-toggler-icon\"></span>\r\n        </button>\r\n        <a class=\"navbar-brand\" href=\"/\">Bundled Sticks</a>\r\n\r\n        <div class=\"collapse navbar-collapse\" id=\"navbarMain\">\r\n            <div class=\"navbar-nav\">\r\n                <a class=\"nav-item nav-link\" [routerLink]=\"['Index']\">Home</a>\r\n                <div class=\"nav-item dropdown\">\r\n                    <a class=\"nav-link dropdown-toggle\" id=\"navbarWikiDropdown\" data-toggle=\"dropdown\">\r\n                        Wiki\r\n                    </a>\r\n                    <div class=\"dropdown-menu\">\r\n                        <a class=\"dropdown-item\" [routerLink]=\"['Wiki']\">2.x</a>\r\n                        <a class=\"dropdown-item\" href=\"https://github.com/BundledSticksInkorperated/Discore/wiki\">3.x</a>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </nav>\r\n</div>\r\n<div class=\"\">\r\n    <router-outlet></router-outlet>\r\n</div>\r\n<app-footer></app-footer>",
         "templateUrl": "asset:cp_test/lib/app_component.html",
         "styles": [],
         "styleUrls": [],
         "ngContentSelectors": []
       },
-      "providers": [],
+      "providers": [
+        {
+          "class": "Identifier",
+          "name": "ROUTER_PROVIDERS",
+          "moduleUrl": null,
+          "prefix": null,
+          "value": null
+        },
+        {
+          "class": "Provider",
+          "token": {
+            "value": null,
+            "identifier": {
+              "class": "Identifier",
+              "name": "LocationStrategy",
+              "moduleUrl": null,
+              "prefix": null,
+              "value": null
+            },
+            "identifierIsInstance": false
+          },
+          "useClass": {
+            "class": "Type",
+            "name": "HashLocationStrategy",
+            "moduleUrl": null,
+            "prefix": null,
+            "isHost": false,
+            "value": null,
+            "diDeps": []
+          },
+          "useExisting": null,
+          "useValue": null,
+          "useFactory": null,
+          "multi": false,
+          "deps": null
+        }
+      ],
       "viewProviders": [],
       "queries": [],
       "viewQueries": []

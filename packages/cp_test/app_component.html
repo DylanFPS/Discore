@@ -1,4 +1,27 @@
-<cta></cta>
-<!-- <wiki></wiki> #TODO-->
-<readme></readme>
+<div class="p-bottom">
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarMain">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/">Bundled Sticks</a>
+
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" [routerLink]="['Index']">Home</a>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarWikiDropdown" data-toggle="dropdown">
+                        Wiki
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" [routerLink]="['Wiki']">2.x</a>
+                        <a class="dropdown-item" href="https://github.com/BundledSticksInkorperated/Discore/wiki">3.x</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="">
+    <router-outlet></router-outlet>
+</div>
 <app-footer></app-footer>

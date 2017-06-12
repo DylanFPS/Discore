@@ -1,4 +1,7 @@
 <div class="container">
+    <div *ngIf="jsonPayload == null">
+        <img class="m-x-auto d-block img-circle app-loading" src="loading.gif">
+    </div>
     <div class="row">
         <div class="card glassish">
             <div *ngIf="jsonPayload != null">
@@ -10,9 +13,6 @@
                     <small class="text-muted"><span>{{jsonPayload.getPublishedDate()}} ({{jsonPayload.getPublishedDate().toUtc()}} UTC)</span></small>
                     <small class="text-muted" style="float: right"><span>Github took {{jsonPayload.getMillisecondsTaken()}}ms to respond.</span></small>
                 </div>
-            </div>
-            <div *ngIf="jsonPayload == null">
-                <img class="m-x-auto d-block img-circle app-loading" src="loading.gif">
             </div>
         </div>
     </div>
