@@ -1,3 +1,7 @@
+#release-body {
+    word-break: break-word;
+}
+
 #release-body /deep/ h2 {
     text-align: center;
 }

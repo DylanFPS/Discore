@@ -22,6 +22,8 @@ class WikiComponent implements OnInit {
   Map<String, WikiPage> rawPages;
   List<WikiPage> rawPagesList = new List();
 
+  String title;
+
   final RouteParams _routeParams;
 
   WikiComponent(this._service, DomSanitizationService dss, this._routeParams) {
@@ -41,6 +43,7 @@ class WikiComponent implements OnInit {
   }
 
   void changePage(String page) {
+    title = page.replaceAll(new RegExp(r'-'), ' ');
     currentPage = rawPages[page];
   }
 

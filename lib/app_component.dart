@@ -12,10 +12,11 @@ import 'index_component.dart';
 @Component(
   selector: 'app',
   templateUrl: 'app_component.html',
+  styleUrls: const ['app_component.css'],
   directives: const [ROUTER_DIRECTIVES, FooterComponent],
   providers: const[
     ROUTER_PROVIDERS,
-    const Provider(LocationStrategy, useClass: HashLocationStrategy )
+    const Provider(LocationStrategy, useClass: HashLocationStrategy)
   ])
 @RouteConfig(const [
   const Route(path: '/', name: 'Index', component: IndexComponent, useAsDefault: true),
