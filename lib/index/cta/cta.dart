@@ -1,13 +1,14 @@
-import 'package:angular2/angular2.dart';
-import 'package:angular2/security.dart';
 import 'dart:html';
 import 'dart:convert';
 import 'dart:async';
 
+import 'package:angular2/angular2.dart';
+import 'package:angular2/security.dart';
+
 import 'json_payload.dart';
 
 @Component(
-  selector: "cta",
+  selector: "discore-cta",
   templateUrl: 'cta.html',
   //styleUrls: const ['cta.css'],
   directives: const [COMMON_DIRECTIVES, SafeInnerHtmlDirective],
@@ -18,16 +19,11 @@ class CallToActionComponent implements OnInit {
 
   CallToActionComponent(this._dss);
 
-  void ngOnInit() {
+  ngOnInit() async {
     CustomEvent event = new CustomEvent('dartTrianglify', detail: JSON.encode({"elementID" : "ctaJumbo"}));
     document.dispatchEvent(event);
 
-
-    getJson()
-      .then((data) {
-        jsonPayload = data;
-      });
-
+    jsonPayload = await getJson();
   }
 
   SafeUrl getZipball() {
@@ -36,17 +32,11 @@ class CallToActionComponent implements OnInit {
 
   String getVersion() {
     String v = jsonPayload.getTagName();
-    print('[CTA CONTROLLER] ${v.substring(1)}');
     return v.substring(1);
   }
 
   Future<dynamic> getJson() async {
-    JsonPayload toReturn = null;
-    await HttpRequest.getString('https://api.github.com/repos/BundledSticksInkorperated/Discore/releases/latest')
-      .then((String res) {
-        print(res);
-        toReturn = new JsonPayload(JSON.decode(res));
-      });
-    return toReturn;
+    String response = await HttpRequest.getString('https://api.github.com/repos/BundledSticksInkorperated/Discore/releases/latest');
+    return new JsonPayload(JSON.decode(response));
   }
 }

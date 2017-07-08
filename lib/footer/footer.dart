@@ -1,9 +1,10 @@
-import 'package:angular2/angular2.dart';
 import 'dart:html';
 import 'dart:convert';
 
+import 'package:angular2/angular2.dart';
+
 @Component(
-  selector: "app-footer",
+  selector: "discore-footer",
   templateUrl: 'footer.html',
   styleUrls: const ['footer.css'],
   directives: const [COMMON_DIRECTIVES],

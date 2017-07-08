@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:html'
+  show CustomEvent, document;
+
 import 'package:angular2/angular2.dart';
 import 'package:angular2/security.dart';
 import 'package:angular2/router.dart';
@@ -5,41 +9,36 @@ import 'package:angular2/router.dart';
 import 'wiki_page.dart';
 import 'wiki_service.dart';
 
-import 'dart:convert';
-import 'dart:html'
-  show CustomEvent, document;
-
 @Component(
-  selector: 'wiki',
+  selector: 'discore-wiki',
   templateUrl: 'wiki.html',
   styleUrls: const ['wiki.css'],
   directives: const [COMMON_DIRECTIVES, SafeInnerHtmlDirective],
   providers: const [WikiService]
 )
 class WikiComponent implements OnInit {
-  final WikiService _service;
   WikiPage currentPage;
   Map<String, WikiPage> rawPages;
   List<WikiPage> rawPagesList = new List();
 
   String title;
 
+  final WikiService _service;
   final RouteParams _routeParams;
 
   WikiComponent(this._service, DomSanitizationService dss, this._routeParams) {
     WikiPage.setSanitizationService(dss);
   }
 
-  void ngOnInit() {
-    _service.getPages()
-      .then((pages) {
-          rawPages = new Map<String, WikiPage>()
-            ..addAll(pages);
+  ngOnInit() async {
+    var pages = await _service.getPages();
 
-          String page = _routeParams.get('page');
-          if (page != '' && rawPages.containsKey(page)) { changePage(page); }
-          else { changePage("Home"); }
-      });
+    rawPages = new Map<String, WikiPage>()
+      ..addAll(pages);
+
+    String page = _routeParams.get('page');
+    if (page != '' && rawPages.containsKey(page)) { changePage(page); }
+    else { changePage("Home"); }
   }
 
   void changePage(String page) {

@@ -1,57 +1,57 @@
 html {
-    position: relative;
+  position: relative;
 }
 
 body {
-    padding-top: 0px;
+  padding-top: 0px;
 }
 
 .img-circle {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .m-x-auto {
-    margin-right: auto !important;
-    margin-left: auto !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
 }
 
 .p-bottom,
 .container,
 .container-fluid {
-    padding-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 /* .router-link-active is set automaticaly by Dart so make it look like .active from bootstrap */
 .nav-tabs .nav-link.router-link-active,
 .nav-tabs .nav-link.router-link-active:focus,
 .nav-tabs .nav-link.router-link-active:hover {
-    color: #55595c;
-    background-color: #fff;
-    border-color: #ddd #ddd transparent;
+  color: #55595c;
+  background-color: #fff;
+  border-color: #ddd #ddd transparent;
 }
 
 .nav-pills .nav-link.router-link-active,
 .nav-pills .nav-link.router-link-active:focus,
 .nav-pills .nav-link.router-link-active:hover {
-    color: #fff;
-    cursor: default;
-    background-color: #0275d8;
+  color: #fff;
+  cursor: default;
+  background-color: #0275d8;
 }
 
 .navbar-inverse .navbar-nav .nav-link.router-link-active,
 .navbar-inverse .navbar-nav .nav-link.router-link-active:focus,
 .navbar-inverse .navbar-nav .nav-link.router-link-active:hover {
-    color: white;
+  color: white;
 }
 
 .navbar-dark .navbar-nav .nav-link.router-link-active,
 .navbar-dark .navbar-nav .nav-link.router-link-active:focus,
 .navbar-dark .navbar-nav .nav-link.router-link-active:hover {
-    color: white;
+  color: white;
 }
 
 .navbar-light .navbar-nav .nav-link.router-link-active,
 .navbar-light .navbar-nav .nav-link.router-link-active:focus,
 .navbar-light .navbar-nav .nav-link.router-link-active:hover {
-    color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.8);
 }

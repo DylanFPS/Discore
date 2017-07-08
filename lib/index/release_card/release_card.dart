@@ -1,14 +1,16 @@
-import 'package:angular2/angular2.dart';
-import 'package:angular2/security.dart';
 import 'dart:html';
 import 'dart:async';
 import 'dart:convert';
+
+import 'package:angular2/angular2.dart';
+import 'package:angular2/security.dart';
+
 import 'json_payload.dart';
 
 @Component(
-  selector: 'readme',
-  templateUrl: 'release_component.html',
-  styleUrls: const ['release_component.css'],
+  selector: 'discore-release-card',
+  templateUrl: 'release_card.html',
+  styleUrls: const ['release_card.css'],
   directives: const [COMMON_DIRECTIVES, SafeInnerHtmlDirective]
 )
 class ReleaseComponent implements OnInit {
@@ -31,23 +33,22 @@ class ReleaseComponent implements OnInit {
 
   ReleaseComponent(this._dSS);
 
-  void ngOnInit() {
-    getJson()
-      .then((JsonPayload data) {
-        this.jsonPayload = data;
-      });
+  ngOnInit() async {
+    jsonPayload = await getJson();
   }
 
   Future<JsonPayload> getJson() async {
     JsonPayload toReturn = new JsonPayload(_dSS);
+
     Stopwatch st = new Stopwatch();
     st.start();
-    await HttpRequest.getString('https://api.github.com/repos/BundledSticksInkorperated/Discore/releases/latest')
-      .then((String res) {
-        st.stop();
-        toReturn.data = JSON.decode(res);
-        toReturn.stopWatch = st;
-      });
+
+    String response = await HttpRequest.getString('https://api.github.com/repos/BundledSticksInkorperated/Discore/releases/latest');
+    st.stop();
+
+    toReturn.data = JSON.decode(response);
+    toReturn.stopWatch = st;
+
     return toReturn;
   }
 }

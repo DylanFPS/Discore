@@ -1,14 +1,24 @@
 <div *ngIf="currentPage != null">
   <div class="container-fluid">
+    <div class="card glassish" style="margin-bottom: 15px; padding: 15px">
+      <strong>Warning!</strong>
+      <span>
+        This wiki is for Discore 2.x, it is recommended that all new applications use 3.x. Existing
+        2.x applications should migrate to 3.x whenever possible.
+        <a href="https://github.com/BundledSticksInkorperated/Discore/wiki">The 3.x wiki can be found here.</a>
+      </span>
+    </div>
+
     <div class="row">
       <div class="col-sm-9">
         <div class="card glassish">
-          <div id="wiki-body" class="card-block" >
+          <div id="wiki-body" class="card-block">
             <h1>{{title}}</h1>
             <div [safeInnerHtml]="currentPage.body"></div>
           </div>
         </div>
       </div>
+      
       <div class="col-sm-3">
         <div class="card glassish">
           <div class="card-block" [safeInnerHtml]="getSidebar()"></div>
