@@ -27,80 +27,11 @@
 <body>
 	<canvas id="background"></canvas>
 	
-	<app>
-		<img class="m-x-auto d-block img-circle app-loading" src="loading.gif">\
-	</app>
+	<discore-app>
+		<img class="m-x-auto d-block img-circle app-loading" src="loading.gif">
+	</discore-app>
 
-	<script>
-		var reGenElements = [];
-
-		var genTriangle = function (element) {
-
-			if (element.offsetHeight === 0 && element.offsetWidth === 0) {
-				console.log(element);
-				console.log('element errored, no new triangle');
-				return;
-			}
-
-			var pattern = Trianglify({
-				width: element.offsetWidth,
-				height: element.offsetHeight,
-				color_function: TrianglifyColors.prototype.RainbowColorFunction,
-				cell_size: 60,
-				variance: "0.2"
-			});
-
-			element.setAttribute('style', 'background: url(' + pattern.png() + ')');
-		}
-
-		var genBackground = function () {
-			Trianglify({
-				width: window.innerWidth,
-				height: window.innerHeight,
-				x_colors: TrianglifyColors.PrincessToQueen,
-				cell_size: 120,
-				variance: "1"
-			}).canvas(document.getElementById('background'));
-		}
-		genBackground();
-
-		var doit;
-		window.addEventListener('resize', function () {
-			clearTimeout(doit);
-			doit = setTimeout(function () {
-				genBackground();
-				console.log('regenning triangles for ' + reGenElements.length + ' elements');
-				reGenElements.forEach(function (element, index) {
-					genTriangle(element);
-				});
-			}, 100);
-		});
-
-		document.addEventListener("dartLoadHL", function (event) {
-			console.log('Dart told me to load highlight.js');
-			$('code.language-csharp').each(function (i, block) {
-				hljs.highlightBlock(block);
-			});
-		});
-
-		document.addEventListener("dartTrianglify", function (event) {
-			console.log('Dart told me to create a triangle');
-
-			var element = document.getElementById(JSON.parse(event.detail).elementID);
-			console.log(element);
-
-
-			var pattern = Trianglify({
-				width: element.offsetWidth,
-				height: element.offsetHeight,
-				color_function: TrianglifyColors.prototype.RainbowColorFunction,
-				cell_size: 60,
-				variance: "0.2"
-			});
-			element.setAttribute('style', 'background: url(' + pattern.png() + ')');
-			reGenElements.push(element);
-		});
-	</script>
+	<script src="js/trianglify-listeners.js"></script>
 
 
 </body></html>
