@@ -6,7 +6,7 @@
     <div *ngIf="jsonPayload != null">
       <h2 class="card-header text-md-center">{{jsonPayload.getTagName()}} - Changelog</h2>
       <div class="card-block">
-        <div id="release-body" [safeInnerHtml]="jsonPayload.getBody()"></div>
+        <div class="markdown-body" id="release-body" [safeInnerHtml]="jsonPayload.getBody()"></div>
       </div>
       <div class="card-block">
         <small class="text-muted"><span>{{jsonPayload.getPublishedDate()}} ({{jsonPayload.getPublishedDate().toUtc()}} UTC)</span></small>

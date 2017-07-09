@@ -1,21 +1,78 @@
-#wiki-body /deep/ h2 {
-  text-align: center;
+.wiki-container {
+  width: 1400px;
+  max-width: 100%;
+
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 20px;
+
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#wiki-body /deep/ h2::after {
-  content: "";
-  display: block;
-  height: 1px;
-  width: 100%;
-  margin: 10px;
-  background: #adadad;
+.warning-card {
+  margin-bottom: 15px; 
+  padding: 15px;
 }
 
-#wiki-body /deep/ h3 {
-  padding-bottom: 5px;
+.wiki-body-title {
+  font-size: 2em;
+  font-weight: normal;
+
+  padding-bottom: 0.3em;
+  margin-bottom: 16px;
+
+  border-bottom: 1px solid #BDBDBD;
 }
 
-#wiki-body /deep/ h4 {
-  font-size: 1.3rem;
-  font-style: italic;
+@media (min-width: 1200px) {
+  .wiki-body {
+    max-width: 100%;
+    flex-grow: 1;
+  }
+
+  .wiki-sidebar {
+    max-width: 260px;
+  }
+}
+
+@media (min-width: 768px) {
+  .wiki-sidebar /deep/ li {
+    line-height: 19.5px;
+    font-size: 13px;
+  }
+
+  .wiki-sidebar /deep/ li a {
+    font-size: 13px;
+  }
+
+  .wiki-sidebar /deep/ h3 {
+    font-size: 1.2em;
+  }
+
+  .wiki-sidebar .collapse {
+    display: block !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .wiki-container > .row:not(.warning-card) {
+    flex-direction: column-reverse;
+  }
+
+  .wiki-sidebar {
+    margin-bottom: 15px;
+  }
+
+  .wiki-sidebar .navbar-light {
+    padding: .5rem 1rem;
+    display: flex;
+  }
+
+  .wiki-sidebar .navbar-light strong {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
 }

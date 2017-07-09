@@ -10,6 +10,11 @@ body {
   border-radius: 50%;
 }
 
+code {
+  background-color: #f3f4f4;
+  color: #24292e;
+}
+
 .m-x-auto {
   margin-right: auto !important;
   margin-left: auto !important;
@@ -54,4 +59,33 @@ body {
 .navbar-light .navbar-nav .nav-link.router-link-active:focus,
 .navbar-light .navbar-nav .nav-link.router-link-active:hover {
   color: rgba(0, 0, 0, 0.8);
+}
+
+.markdown-body {
+  word-break: break-word;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+}
+
+.markdown-body h2 {
+  font-size: 1.5em;
+
+  padding-bottom: 0.3em;
+  margin-top: 24px;
+  margin-bottom: 16px;
+
+  border-bottom: 1px solid #BDBDBD;
+}
+
+.markdown-body h3 {
+  font-size: 1.25em;
+
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 1em;
 }

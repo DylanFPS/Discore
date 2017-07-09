@@ -10,7 +10,7 @@ import 'json_payload.dart';
 @Component(
   selector: 'discore-release-card',
   templateUrl: 'release_card.html',
-  styleUrls: const ['release_card.css'],
+  //styleUrls: const ['release_card.css'],
   directives: const [COMMON_DIRECTIVES, SafeInnerHtmlDirective]
 )
 class ReleaseComponent implements OnInit {
