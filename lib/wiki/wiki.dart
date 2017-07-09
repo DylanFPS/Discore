@@ -13,8 +13,7 @@ import 'wiki_service.dart';
   selector: 'discore-wiki',
   templateUrl: 'wiki.html',
   styleUrls: const ['wiki.css'],
-  directives: const [COMMON_DIRECTIVES, SafeInnerHtmlDirective],
-  providers: const [WikiService]
+  directives: const [COMMON_DIRECTIVES, SafeInnerHtmlDirective]
 )
 class WikiComponent implements OnInit {
   WikiPage currentPage;

@@ -7,6 +7,15 @@ import 'wiki_page.dart';
 
 @Injectable()
 class WikiService {
-  Future<Map<String, WikiPage>> getPages() async
-    => await JsonPageLoader.loadJson();
+  Map<String, WikiPage> _cachedPages;
+
+  Future<Map<String, WikiPage>> getPages() async {
+    if (_cachedPages == null) {
+      _cachedPages = await JsonPageLoader.loadJson();
+    } else {
+      print('from cache');
+    }
+
+    return _cachedPages;
+  }
 }

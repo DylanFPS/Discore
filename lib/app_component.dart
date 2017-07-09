@@ -7,6 +7,7 @@ import 'footer/footer.dart';
 
 import 'index/index_component.dart';
 import 'wiki/wiki.dart';
+import 'wiki/wiki_service.dart';
 
 @Component(
   selector: 'discore-app',
@@ -18,7 +19,8 @@ import 'wiki/wiki.dart';
   ],
   providers: const[
     ROUTER_PROVIDERS,
-    const Provider(LocationStrategy, useClass: HashLocationStrategy)
+    const Provider(LocationStrategy, useClass: HashLocationStrategy),
+    WikiService
   ])
 @RouteConfig(const [
   const Route(path: '/', name: 'Index', component: IndexComponent, useAsDefault: true),
