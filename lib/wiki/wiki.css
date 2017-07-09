@@ -25,17 +25,6 @@
   border-bottom: 1px solid #BDBDBD;
 }
 
-@media (min-width: 1200px) {
-  .wiki-body {
-    max-width: 100%;
-    flex-grow: 1;
-  }
-
-  .wiki-sidebar {
-    max-width: 260px;
-  }
-}
-
 @media (min-width: 768px) {
   .wiki-sidebar /deep/ li {
     line-height: 19.5px;
